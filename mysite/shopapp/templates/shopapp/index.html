@@ -1,0 +1,31 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+	Shop
+{% endblock %}
+
+{% block body %}
+    <h1>
+    {% if user.is_authenticated %}
+        Greetings, <em>{{ user.username }}</em> in our awesome shop
+    {% else %}
+        Greetings, <em>Stranger</em> in our awesome shop
+    {% endif %}
+    </h1>
+    <h3>Here you will find a lot of goods, such as:</h3>
+    <ul>
+    {% for category in categories %}
+        <li>{{ category }}</li>
+    {% endfor %}
+    </ul>
+    <div>
+    <a href="{% url 'shopapp:product_list' %}">
+        List of products
+    </a>
+    </div>
+    <div>
+    <a href="{% url 'shopapp:order_list' %}">
+        List of orders
+    </a>
+    </div>
+{% endblock %}

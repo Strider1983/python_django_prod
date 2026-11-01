@@ -1,0 +1,31 @@
+{% extends 'shopapp/base.html' %}
+
+{% block title %}
+	Products
+{% endblock %}
+
+{% block body %}
+    <h1>All Products</h1>
+    Total count: {{ products|length }} products
+    {% if products %}
+    	{% for product in products %}
+            <div>
+            <p>
+                <a href="{% url 'shopapp:product_detail' pk=product.pk %}">
+                    <strong>{{ product.name }}</strong>
+                </a>
+            </p>
+            <p>Price: {{ product.price }}</p>
+            {% if product.preview %}
+                <img src="{{ product.preview.url }}" alt="{{ product.name }}" style="max-width: 200px; height: auto;">
+            {% endif %} 
+            </div>    
+    	{% endfor %}
+    {% endif %}
+    <div>
+        <a href="{% url 'shopapp:product_create' %}">Create</a>
+    </div>
+    <div>
+        <a href="{% url 'shopapp:index' %}">Main page</a>
+    </div>
+{% endblock %}

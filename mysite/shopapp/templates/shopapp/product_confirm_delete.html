@@ -1,0 +1,21 @@
+{% extends "shopapp/base.html" %}
+
+{% block title %}
+    Confirm delete {{ product.name }}
+{% endblock %}
+
+{% block body %}
+    <h1>Are you sure delete {{ product.name }}?</h1>
+    <br>
+    <div>
+        <a href="{% url 'shopapp:product_detail' pk=product.pk %}">Back to product</a>
+    </div>
+    <br>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+{% endblock %}
